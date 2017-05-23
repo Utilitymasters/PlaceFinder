@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/recentItemText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical|left"
+        android:text="Roger"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/padding_15"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:drawablePadding="15dp"
+        android:drawableLeft="@drawable/ic_history_black_24dp"
+        android:drawableTint="@color/colorPrimary"/>
+</LinearLayout>
