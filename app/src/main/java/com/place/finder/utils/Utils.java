@@ -73,7 +73,7 @@ public class Utils {
 
         buildUrl.append("&"+photoReference);
 
-       // Log.e("getPhotoUrl:", "" + buildUrl.toString());
+        Log.e("getPhotoUrl:", "" + buildUrl.toString());
 
         return buildUrl.toString();
     }
