@@ -79,11 +79,11 @@ public class Utils {
     }
 
     public static boolean isSdCardAvailable(){
-        Boolean isAvailable =false;
+
+       Boolean isAvailable =false;
        if(android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED) && Environment.isExternalStorageRemovable()){
            isAvailable = true;
        }
-
         return isAvailable;
     }
 }
