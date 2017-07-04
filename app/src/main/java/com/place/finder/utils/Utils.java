@@ -78,6 +78,10 @@ public class Utils {
         return buildUrl.toString();
     }
 
+    /**
+     * check whether sd card support available or not.
+     * @return
+     */
     public static boolean isSdCardAvailable(){
 
        Boolean isAvailable =false;
