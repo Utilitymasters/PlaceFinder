@@ -18,7 +18,7 @@ import retrofit2.adapter.rxjava.HttpException;
 
 public class NetworkError extends Throwable {
     public static final String DEFAULT_ERROR_MESSAGE = "Something went wrong! Please try again.";
-    public static final String NETWORK_ERROR_MESSAGE = "No Internet Connection!";
+    public static final String NETWORK_ERROR_MESSAGE = "No Internet Connection, please check network!";
     private static final String ERROR_MESSAGE_HEADER = "Error-Message";
     private final Throwable error;
 
