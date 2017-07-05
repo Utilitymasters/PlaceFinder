@@ -26,7 +26,6 @@ public class MyLocationPresenter {
     }
 
 
-
     public void getCurrentPlace(String currentAddress) {
         view.showProgress();
 
