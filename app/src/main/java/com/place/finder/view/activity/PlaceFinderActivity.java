@@ -31,6 +31,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.RealmResults;
 
 /**
  * Created by rohit.anvekar on 5/18/2017.
@@ -179,19 +180,39 @@ public class PlaceFinderActivity extends BaseApp implements PlaceFinderView {
      */
     public void loadRecentHistory() {
 
-        mDatabaseHelper = new DatabaseHelper(PlaceFinderActivity.this);
-        recentSearchItemList = mDatabaseHelper.getAll();
-        cursor = new MatrixCursor(COLUMNS);
-        for (int i = 0; i < recentSearchItemList.size(); i++) {
-            cursor.addRow(new String[]{"" + i, recentSearchItemList.get(i).itemName});
+        if(isRealmActive){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    RealmResults<RecentHistoryItem> recentSearchItemList = realm.where(RecentHistoryItem.class).findAll();
+                    cursor = new MatrixCursor(COLUMNS);
+                    for (int i = 0; i < recentSearchItemList.size(); i++) {
+                        cursor.addRow(new String[]{"" + i, recentSearchItemList.get(i).itemName});
+                    }
+                }
+            });
+        }else {
+            mDatabaseHelper = new DatabaseHelper(PlaceFinderActivity.this);
+            recentSearchItemList = mDatabaseHelper.getAll();
+            cursor = new MatrixCursor(COLUMNS);
+            for (int i = 0; i < recentSearchItemList.size(); i++) {
+                cursor.addRow(new String[]{"" + i, recentSearchItemList.get(i).itemName});
+            }
         }
     }
 
     public void addSuggestion(String query) {
+        if(isRealmActive){
 
-        if (mDatabaseHelper.checkIfExists(query) == false) {
             cursor.addRow(new String[]{"0", query});
-            mDatabaseHelper.create(new RecentHistoryItem(query));
+            new RecentHistoryItem(query);
+        }else {
+
+            if (mDatabaseHelper.checkIfExists(query) == false) {
+                cursor.addRow(new String[]{"0", query});
+                mDatabaseHelper.create(new RecentHistoryItem(query));
+            }
         }
 
     }
